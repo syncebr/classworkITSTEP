@@ -1,0 +1,24 @@
+#include<iostream>
+#include<Windows.h>
+using namespace std;
+int main(void) {
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
+	const int NUMMON = 12;
+	char *mes[] = { "январь","февраль","март","апрель","май","июнь","июль","август","сентябрь","октябрь","ноябрь","декабрь" };
+	for (int i = 0; i < NUMMON; i++) {
+		cout << mes[i] << "  ";
+	}
+	cout << endl;
+	char **season[] = { mes + 11,mes + 2,mes + 5,mes + 8 };
+	for (int i = 0; i < 4; i++) {
+		cout << *season[i] << "  ";
+	}
+	cout << endl;
+	char ***ptr = season;
+	for (int i = 0; i < 4; i++, ptr++) {
+		cout << *ptr << "  ";
+	}
+	cout << endl;
+	system("pause");
+}
