@@ -1,0 +1,79 @@
+#include <iostream>
+#include<stdlib.h>
+#include<stdio.h>
+#include<ctime>
+
+using namespace std;
+
+bool checkNumber(int);
+void generateArr(int arr[], int size);
+void printArr(int arr[], int size);
+int checkRow(int *, int);
+void multiPrint(int *, const int row, const int col);
+
+int main() {
+	srand(time(0));
+	const int N = 4;
+	const int M = 7;
+	int arr[M][N];
+	generateArr(arr[0], M*N);
+	multiPrint(arr[0], N, M);
+	for (int i = 0; i < N; i++) {
+		cout << checkRow(arr[0]+i*M, M) << endl;
+	}
+	system("pause");
+	return 0;
+}
+
+
+bool checkNumber(int a) {
+	int b = a / 2;
+	bool flag = false;
+	int i = 2;
+	while (i<b)
+	{
+		if (!(a%i))
+		{
+			flag = true;
+			break;
+		}
+		i++;
+	}
+	return flag;
+}
+
+void generateArr(int arr[], int size) {
+	int *ptrArr = arr;
+	while (ptrArr < (arr + size)) {
+		*ptrArr = rand() % 100 + 1;
+		ptrArr++;
+	}
+}
+
+void printArr(int arr[], int size) {
+	int *ptrArr = arr;
+	if (size == 0) cout << "Array is empty";
+	while (ptrArr < (arr + size)) {
+		printf("%2d   ", *ptrArr);
+		ptrArr++;
+	}
+	cout << endl;
+}
+
+int checkRow(int arr[], int size) {
+	int i = 0;
+	int counter = 0;
+	while (i < size) {
+		if (!checkNumber(arr[i])) counter++;
+		i++;
+	}
+	return counter;
+}
+
+void multiPrint(int arr[], const int row, const int col) {
+	int i = 0;
+	while (i<row) {
+		printArr(arr + i*col, col);
+		i++;
+	}
+}
